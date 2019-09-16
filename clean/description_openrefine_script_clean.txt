@@ -1,0 +1,7 @@
+Tasks completed:
+1. deleted 846 rows of activity
+2. deleted ~3500 blank concentration rows
+   (using conc gives more unit uniformity than value)
+3. choosing to keep 1526 rows that have no uncertainty
+4. 652 samples remain; a potential min list is:
+   Pu239, Pu240, Pu241, Pu242, U235, U236, U238, maybe U234
