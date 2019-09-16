@@ -1,0 +1,5 @@
+Tasks completed:
+1. separated all necessary columns that had values with units 
+   (burnup, enrich, unc)
+2. cleaned up burnup units to all be GWd/tUi
+3. renamed columns

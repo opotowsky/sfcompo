@@ -1,0 +1,253 @@
+[
+  {
+    "op": "core/column-removal",
+    "columnName": "Column",
+    "description": "Remove column Column"
+  },
+  {
+    "op": "core/column-split",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Burnup",
+    "guessCellType": true,
+    "removeOriginalColumn": false,
+    "mode": "separator",
+    "separator": " ",
+    "regex": false,
+    "maxColumns": 0,
+    "description": "Split column Burnup by separator"
+  },
+  {
+    "op": "core/column-split",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Enrichment",
+    "guessCellType": true,
+    "removeOriginalColumn": false,
+    "mode": "separator",
+    "separator": " ",
+    "regex": false,
+    "maxColumns": 0,
+    "description": "Split column Enrichment by separator"
+  },
+  {
+    "op": "core/column-split",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Uncertainty",
+    "guessCellType": true,
+    "removeOriginalColumn": false,
+    "mode": "separator",
+    "separator": " ",
+    "regex": false,
+    "maxColumns": 0,
+    "description": "Split column Uncertainty by separator"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "Burnup 2",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "MW*d/tUi"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "MW*d/tUi"
+      },
+      {
+        "from": [
+          "MW*d/tHMi"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "MW*d/tUi"
+      },
+      {
+        "from": [
+          "GW*d/tUi"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "GW*d/tUi"
+      },
+      {
+        "from": [
+          "GW*d/tHMi"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "GW*d/tUi"
+      }
+    ],
+    "description": "Mass edit cells in column Burnup 2"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Burnup",
+    "description": "Remove column Burnup"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Enrichment",
+    "description": "Remove column Enrichment"
+  },
+  {
+    "op": "core/column-removal",
+    "columnName": "Uncertainty",
+    "description": "Remove column Uncertainty"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Burnup 2",
+    "newColumnName": "BurnupUnit",
+    "description": "Rename column Burnup 2 to BurnupUnit"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Burnup 1",
+    "newColumnName": "Burnup",
+    "description": "Rename column Burnup 1 to Burnup"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "BurnupUnit",
+          "expression": "value",
+          "columnName": "BurnupUnit",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "MW*h/kgUi",
+                "l": "MW*h/kgUi"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "Burnup",
+    "expression": "grel:value/24.0",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Burnup using expression grel:value/24.0"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "BurnupUnit",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "MW*h/kgUi"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "GW*d/tUi"
+      }
+    ],
+    "description": "Mass edit cells in column BurnupUnit"
+  },
+  {
+    "op": "core/text-transform",
+    "engineConfig": {
+      "facets": [
+        {
+          "type": "list",
+          "name": "BurnupUnit",
+          "expression": "value",
+          "columnName": "BurnupUnit",
+          "invert": false,
+          "omitBlank": false,
+          "omitError": false,
+          "selection": [
+            {
+              "v": {
+                "v": "MW*d/tUi",
+                "l": "MW*d/tUi"
+              }
+            }
+          ],
+          "selectBlank": false,
+          "selectError": false
+        }
+      ],
+      "mode": "row-based"
+    },
+    "columnName": "Burnup",
+    "expression": "grel:value/1000.0",
+    "onError": "keep-original",
+    "repeat": false,
+    "repeatCount": 10,
+    "description": "Text transform on cells in column Burnup using expression grel:value/1000.0"
+  },
+  {
+    "op": "core/mass-edit",
+    "engineConfig": {
+      "facets": [],
+      "mode": "row-based"
+    },
+    "columnName": "BurnupUnit",
+    "expression": "value",
+    "edits": [
+      {
+        "from": [
+          "MW*d/tUi"
+        ],
+        "fromBlank": false,
+        "fromError": false,
+        "to": "GW*d/tUi"
+      }
+    ],
+    "description": "Mass edit cells in column BurnupUnit"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Enrichment 1",
+    "newColumnName": "Enrichment",
+    "description": "Rename column Enrichment 1 to Enrichment"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Enrichment 2",
+    "newColumnName": "EnrichmentUnit",
+    "description": "Rename column Enrichment 2 to EnrichmentUnit"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Uncertainty 1",
+    "newColumnName": "Uncertainty",
+    "description": "Rename column Uncertainty 1 to Uncertainty"
+  },
+  {
+    "op": "core/column-rename",
+    "oldColumnName": "Uncertainty 2",
+    "newColumnName": "UncertaintyUnit",
+    "description": "Rename column Uncertainty 2 to UncertaintyUnit"
+  }
+]
